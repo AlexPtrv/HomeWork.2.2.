@@ -1,5 +1,5 @@
 public class Menu  {
-    private HomeWork hw = new HomeWork(0);
+    private HomeWork hw = new HomeWork();//Вот здесь
 
     void menu() {
         System.out.println("Какой размер листа вы хотите:\n" + "1.По умолчанию(16).\n" + "2.Ввести свой размер.");
