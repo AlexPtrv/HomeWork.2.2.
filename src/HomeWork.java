@@ -4,11 +4,19 @@ import java.util.Random;
 import java.util.Scanner;
 
 
-public class HomeWork {
-    private LinkedList<Integer> numbers = new LinkedList<Integer>();
+public class HomeWork<T> {
+    private Queue<Integer> numbers = new LinkedList<>();
     private Scanner scn = new Scanner(System.in);
     private Random random = new Random();
+    private T val;
 
+    HomeWork(T o) {
+        val = o;
+    }
+
+    T getVal() {
+        return val;
+    }
 
     Queue<Integer> getNumbers() {
         return numbers;
@@ -18,23 +26,36 @@ public class HomeWork {
         return scn;
     }
 
+    HomeWork<Integer> iOb;
+
     void ifChoiceDefault() {
         for (int i = 0; i < 16; i++) {
-            numbers.add(random.nextInt(2000));
+            iOb = new HomeWork<>(random.nextInt(2000));
+            int defaultNumbers = iOb.getVal();
+            numbers.offer(defaultNumbers);
         }
     }
 
-    void choise2() {
+    void choice2() {
         System.out.println("Введите размер:");
-        int size = scn.nextInt();
-        for (int i = 0; i < size; i++) {
-            numbers.add(random.nextInt(2000));
+        try {
+            iOb = new HomeWork<>(Integer.parseInt(scn.next()));
+            int size = iOb.getVal();
+            for (int i = 0; i < size; i++) {
+                numbers.offer(random.nextInt(2000));
+            }
+        } catch (NumberFormatException n) {
+            System.out.println("Вводить можно только число!");
+            choice2();
         }
     }
-void add(){
-        numbers.add(random.nextInt());
-        numbers.remove();
 
-}
+    void add() {
+        iOb = new HomeWork<>(random.nextInt());
+        int number = iOb.getVal();
+        numbers.offer(number);
+        numbers.poll();
+
+    }
 
 }
